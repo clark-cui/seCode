@@ -16,7 +16,7 @@ void merge_sort(int q[], int l, int r)
 
     int k = 0, i = l, j = mid + 1;
     while (i <= mid && j <= r)
-        if (q[i] <= q[j]) tmp[k ++ ] = q[i ++ ];
+        if (q[i] <= q[j]) tmp[k ++ ] = q[i ++ ]; //注意k++的写法，意思是赋值后两边一起+1增长
         else tmp[k ++ ] = q[j ++ ];
     while (i <= mid) tmp[k ++ ] = q[i ++ ];
     while (j <= r) tmp[k ++ ] = q[j ++ ];
