@@ -1,1 +1,4 @@
-### This is my AcWing && Leetcode playground.
+- 理解算法思想
+- 背过代码模板
+- 默写练习（以题来练习）
+- 重复默写，写完再删掉重写，重写3-5次
