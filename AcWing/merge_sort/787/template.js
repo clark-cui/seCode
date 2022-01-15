@@ -13,9 +13,18 @@ const merge_sort = (q, l, r) => {
   }
   while (i <= mid) temp[k++] = q[i++]
   while (j <= r) temp[k++] = q[j++]
-  for (let i = l, j = 0; i <= r; i++, j++)
-    q[i] = temp[j]
+  for (i = l, j = 0; i <= r; i++, j++)
+    q[i] = tmp[j];
+
+  // debug current file 看看为啥这里要一个新的j值而不是像下面这行代码一样直接i
+  //for (let i = l, j = 0; i <= r; i++, j++) q[i] = tmp[i]
+
 }
+// let arr = [3, 1, 2, 4, 5]
+// merge_sort(arr, 0, 4);
+// console.log(arr);
+
+
 //解法2：不同点是最后用while替代for循环。for循环与while本来就是等价的
 const merge_sort = (q, l, r) => {
   if (l >= r) return;
