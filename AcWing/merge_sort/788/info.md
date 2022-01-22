@@ -2,10 +2,10 @@
 
 - ### 题号：
 
-  - [acwing787](https://www.acwing.com/activity/content/problem/content/821/)
+  - [acwing788](https://www.acwing.com/activity/content/problem/content/822/)
 
 - ### 解题思想：
-
+  - 逆序对：从左往右，从一组数中先后选出两个数，第一个数比第二个数大，则这俩构成一个逆序对
   - 基于分治的思想。以数组的中心点为分（区别于快排），分为左边和右边，分别递归排序，最后合并起来。
 
 - ### 解题步骤：
