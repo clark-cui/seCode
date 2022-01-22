@@ -1,0 +1,27 @@
+{
+  "name": "secode",
+  "version": "1.0.0",
+  "description": "- 理解算法思想 - 背过代码模板 - 默写练习（以题来练习） - 重复默写，写完再删掉重写，重写 3-5 次",
+  "main": "index.js",
+  "directories": {
+    "test": "test"
+  },
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "build": "swc main.ts -o dist/index.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/clark-cui/seCode.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/clark-cui/seCode/issues"
+  },
+  "homepage": "https://github.com/clark-cui/seCode#readme",
+  "devDependencies": {
+    "@swc/cli": "^0.1.55",
+    "@swc/core": "^1.2.130"
+  }
+}

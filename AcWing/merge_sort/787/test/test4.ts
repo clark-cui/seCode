@@ -16,6 +16,6 @@ const merge_sort_ts3 = (q, l, r) => {
 
   for (let a = l, b = 0; a <= r; a++, b++) q[a] = tmp[b];
 };
-// let arr = [3, 1, 2, 4, 5];
-// merge_sort_ts3(arr, 0, 4);
-// console.log(arr);
+let arr = [3, 1, 2, 4, 5];
+merge_sort_ts3(arr, 0, 4);
+console.log(arr);
