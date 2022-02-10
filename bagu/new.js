@@ -14,8 +14,11 @@ p1.sayHI();
 // my new
 function myNew() {
   let obj = {};
-  let fn = [].shift.call(arguments);
+  let fn = [].shift.call(arguments);//取第一个参数，是fn
+  //shift() 方法从数组中删除第一个元素，并返回该元素的值。此方法更改数组的长度
   obj.__proto__ = fn.prototype;
+  // const args=[...arguments].slice(1)
+  // const res = fn.apply(obj, args)
   const res = fn.apply(obj, arguments)
   return typeof res === 'object' ? res : obj
 }

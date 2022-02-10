@@ -2,11 +2,13 @@
 //深拷贝和浅拷贝只针对像Object和Array这样的复杂对象的，String,Number等简单类型不存在深拷贝
 
 //浅拷贝
-Object.assign(target, ...sources);
+// Object.assign(target, ...sources);
 
 //深拷贝
-//JSON.stringify()
 
+//方法一：JSON.stringify()
+
+//方法二：
 function deepClone(newObj, oldObj) {
   for (let k in oldObj) {
     let item = oldObj[k];
@@ -21,3 +23,14 @@ function deepClone(newObj, oldObj) {
     }
   }
 }
+
+let obj = {
+  id: 1,
+  name: 'Tom',
+  msg: {
+    age: 18
+  }
+}
+let o = {}
+deepClone(o, obj);
+console.log(o);
