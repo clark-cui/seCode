@@ -127,13 +127,13 @@ var climbStairs = function (n) {
  * @param {number} n
  * @return {number}
  */
- var numSquares = function (n) {
+var numSquares = function (n) {
   const dp = new Array(n).fill(0); //初始化dp数组 当n为0的时候
   for (let i = 1; i <= n; i++) {
-      dp[i] = i; // 最坏的情况就是每次+1 比如: dp[3]=1+1+1
-      for (let j = 1; i - j * j >= 0; j++) {//枚举前一个状态
-          dp[i] = Math.min(dp[i], dp[i - j * j] + 1); // 动态转移方程
-      }
+    dp[i] = i; // 最坏的情况就是每次+1 比如: dp[3]=1+1+1
+    for (let j = 1; i - j * j >= 0; j++) { //枚举前一个状态
+      dp[i] = Math.min(dp[i], dp[i - j * j] + 1); // 动态转移方程
+    }
   }
   return dp[n];
 };
@@ -144,23 +144,42 @@ var climbStairs = function (n) {
  * @param {number[][]} triangle
  * @return {number}
  */
- var minimumTotal = function(triangle) {
-  const m =triangle.length;
-  const dp =new Array(m);
-  for(let i=0;i<m;i++){
-      dp[i]=new Array(triangle[i].length);
+var minimumTotal = function (triangle) {
+  const m = triangle.length;
+  const dp = new Array(m);
+  for (let i = 0; i < m; i++) {
+    dp[i] = new Array(triangle[i].length);
   }
 
-  for(let i=m-1;i>=0;i--){
-      for(let j=0;j<triangle[i].length;j++){
-          if(i===m-1){
-              dp[i][j]=triangle[i][j]
-          }else{
-              dp[i][j]=Math.min(dp[i+1][j],dp[i+1][j+1])+triangle[i][j];
-          }
+  for (let i = m - 1; i >= 0; i--) {
+    for (let j = 0; j < triangle[i].length; j++) {
+      if (i === m - 1) {
+        dp[i][j] = triangle[i][j]
+      } else {
+        dp[i][j] = Math.min(dp[i + 1][j], dp[i + 1][j + 1]) + triangle[i][j];
       }
+    }
   }
   return dp[0][0];
 };
 
+
+// 53. 最大子数组和（简单） https://leetcode-cn.com/problems/maximum-subarray/
+/**
+ * @param {number[]} nums
+ * @return {number}
+ */
+var maxSubArray = function (nums) {
+  let prev = 0,
+    max = nums[0];
+  for (let i = 0; i < nums.length; i++) {
+    prev = Math.max(nums[i], nums[i] + prev);
+    max = Math.max(max, prev);
+  }
+  return max;
+};
+
+
 //152. 乘积最大子数组 （medium）https://leetcode-cn.com/problems/maximum-product-subarray/
+//这个题的状态转移方程没看懂，查了下似乎不会考，不学了
+
