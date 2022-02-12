@@ -140,3 +140,27 @@ var climbStairs = function (n) {
 
 
 //120. 三角形最小路径和（medium） https://leetcode-cn.com/problems/triangle/
+/**
+ * @param {number[][]} triangle
+ * @return {number}
+ */
+ var minimumTotal = function(triangle) {
+  const m =triangle.length;
+  const dp =new Array(m);
+  for(let i=0;i<m;i++){
+      dp[i]=new Array(triangle[i].length);
+  }
+
+  for(let i=m-1;i>=0;i--){
+      for(let j=0;j<triangle[i].length;j++){
+          if(i===m-1){
+              dp[i][j]=triangle[i][j]
+          }else{
+              dp[i][j]=Math.min(dp[i+1][j],dp[i+1][j+1])+triangle[i][j];
+          }
+      }
+  }
+  return dp[0][0];
+};
+
+//152. 乘积最大子数组 （medium）https://leetcode-cn.com/problems/maximum-product-subarray/
