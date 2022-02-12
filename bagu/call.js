@@ -19,3 +19,17 @@ let obj = {
 f.myCall(obj, 1, 2) //否则this指向window
 
 // 3 1
+
+const context = [].shift.call(arguments);
+const obj = context || window;
+obj.fn = this;
+let res = obj.fn(...arguments);
+delete obj.fn;
+return res;
+
+const context = [].shift.call(arguments);
+const obj = context || window;
+obj.fn = this;
+let res = obj.fn(...arguments);
+delete obj.fn;
+return res;

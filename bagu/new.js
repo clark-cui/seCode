@@ -1,4 +1,3 @@
-
 /*实现new */
 function Person(name, age) {
   this.name = name;
@@ -14,7 +13,7 @@ p1.sayHI();
 // my new
 function myNew() {
   let obj = {};
-  let fn = [].shift.call(arguments);//取第一个参数，是fn
+  let fn = [].shift.call(arguments); //取第一个参数，是fn
   //shift() 方法从数组中删除第一个元素，并返回该元素的值。此方法更改数组的长度
   obj.__proto__ = fn.prototype;
   // const args=[...arguments].slice(1)
@@ -26,3 +25,10 @@ let p2 = myNew(Person, '李四', '20');
 p2.sayHI();
 
 
+function myNew() {
+  let obj = {};
+  let fn = [].shift.call(arguments);
+  obj.__proto__ = fn.prototype;
+  let res = fn.apply(obj, arguments);
+  return typeof res === 'object' ? res : obj
+}

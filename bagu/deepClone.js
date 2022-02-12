@@ -34,3 +34,15 @@ let obj = {
 let o = {}
 deepClone(o, obj);
 console.log(o);
+
+
+function deepc(newObj,oldObj){
+  for(let key in oldObj){
+    if(oldObj[k] instanceof Array){
+      deepc(newObj[k],oldObj[k])
+    }else if (){}
+    else{
+      newObj[k]=oldObj[k]
+    }
+  }
+}
