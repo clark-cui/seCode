@@ -86,3 +86,7 @@ var merge = function (intervals) {
   }
   return n - ans; //intervals的长度减去最多的不重复的区间 就是最少删除区间的个数
 };
+
+//300. 最长递增子序列 (medium) https://leetcode-cn.com/problems/longest-increasing-subsequence/
+// 这个题在codetop名列前茅 ，但是感觉有点难，那里用二分的逻辑没有太理解...后面有空再看吧
+
