@@ -183,3 +183,115 @@ var maxSubArray = function (nums) {
 //152. 乘积最大子数组 （medium）https://leetcode-cn.com/problems/maximum-product-subarray/
 //这个题的状态转移方程没看懂，查了下似乎不会考，不学了
 
+
+//121. 买卖股票的最佳时机 （easy）https://leetcode-cn.com/problems/best-time-to-buy-and-sell-stock/
+/**
+ * @param {number[]} prices
+ * @return {number}
+ */
+var maxProfit = function (prices) {
+  const dp = new Array(prices.length).fill(0).map(() => new Array(2).fill(0));
+  dp[0][0] = 0;
+  dp[0][1] = -prices[0];
+  for (let i = 1; i < prices.length; i++) {
+    dp[i][0] = Math.max(dp[i - 1][0], dp[i - 1][1] + prices[i]);
+    dp[i][1] = Math.max(dp[i - 1][1], -prices[i]);
+  }
+  return dp[prices.length - 1][0];
+};
+
+
+
+//122.买卖股票II （medium）https://leetcode-cn.com/problems/best-time-to-buy-and-sell-stock-ii/submissions/
+/**
+ * @param {number[]} prices
+ * @return {number}
+ */
+var maxProfit = function (prices) {
+  const dp = new Array(prices.length).fill(0).map(() => new Array(2).fill(0));
+  dp[0][0] = 0;
+  dp[0][1] = -prices[0];
+  for (let i = 1; i < prices.length; i++) {
+    dp[i][0] = Math.max(dp[i - 1][0], dp[i - 1][1] + prices[i]);
+    dp[i][1] = Math.max(dp[i - 1][1], dp[i - 1][0] - prices[i]);
+  }
+  return dp[prices.length - 1][0]
+};
+
+//309. 最佳买卖股票时机含冷冻期(medium) https://leetcode-cn.com/problems/best-time-to-buy-and-sell-stock-with-cooldown/
+/**
+ * @param {number[]} prices
+ * @return {number}
+ */
+// 注明  这个板子是错的，后面我再去研究为啥错了
+var maxProfit = function (prices) {
+  const dp = new Array(prices.length).fill(0).map(() => new Array(2).fill(0));
+  dp[0][0] = 0;
+  dp[0][1] = -prices[0];
+  if (prices.length < 2) {
+    return dp[prices.length - 1][0];
+  }
+  dp[1][0] = Math.max(0, prices[1] - prices[0]);
+  dp[1][1] = -prices[0];
+  for (let i = 2; i < prices.length; i++) {
+    dp[i][0] = Math.max(dp[i - 1][0], dp[i - 1][1] + prices[i])
+    dp[i][1] = Math.max(dp[i - 1][1], dp[i - 2][0] - prices[i])
+  }
+  return dp[prices.length - 1][0];
+};
+
+//714. 买卖股票的最佳时机含手续费 (medium) https://leetcode-cn.com/problems/best-time-to-buy-and-sell-stock-with-transaction-fee/
+/**
+ * @param {number[]} prices
+ * @param {number} fee
+ * @return {number}
+ */
+var maxProfit = function (prices, fee) {
+  const dp = new Array(prices.length).fill(0).map(() => new Array(2));
+  dp[0][0] = 0;
+  dp[0][1] = -prices[0];
+  for (let i = 1; i < prices.length; i++) {
+    dp[i][0] = Math.max(dp[i - 1][0], dp[i - 1][1] + prices[i] - fee);
+    dp[i][1] = Math.max(dp[i - 1][1], dp[i - 1][0] - prices[i]);
+  }
+  return dp[prices.length - 1][0];
+};
+
+//198. 打家劫舍 （medium）https://leetcode-cn.com/problems/house-robber/
+/**
+ * @param {number[]} nums
+ * @return {number}
+ */
+var rob = function (nums) {
+  const dp = [nums[0], Math.max(nums[0], nums[1])];
+  for (let i = 2; i < nums.length; i++) {
+    dp[i] = Math.max(dp[i - 1], dp[i - 2] + nums[i]);
+  }
+  return dp[nums.length - 1];
+};
+//64. 最小路径和 (medium) https://leetcode-cn.com/problems/minimum-path-sum/
+/**
+ * @param {number[][]} grid
+ * @return {number}
+ */
+// dp[0][0]=grid[0][0], dp[0][j]=dp[0][j-1]+grid[0][j];
+//dp[i,0]=dp[i-1][0]+grid[i][0];
+// dp[i][j]=Math.min(dp[i-1][j],dp[i][j-1])+grid[i][j];
+var minPathSum = function (grid) {
+  let m = grid.length;
+  let n = grid[0].length;
+  let dp = new Array(m).fill(0).map(() => new Array(n).fill(0));
+  dp[0][0] = grid[0][0];
+  for (let i = 1; i < m; i++) {
+    dp[i][0] = dp[i - 1][0] + grid[i][0]
+  };
+  for (let j = 1; j < n; j++) {
+    dp[0][j] = dp[0][j - 1] + grid[0][j];
+  };
+  for (let i = 1; i < m; i++) {
+    for (let j = 1; j < n; j++) {
+      dp[i][j] = Math.min(dp[i - 1][j], dp[i][j - 1]) + grid[i][j];
+    }
+  }
+  return dp[m - 1][n - 1];
+};
