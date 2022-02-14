@@ -32,3 +32,58 @@ function myNew() {
   let res = fn.apply(obj, arguments);
   return typeof res === 'object' ? res : obj
 }
+
+
+// const quick_sort = (q, l, r) => {
+//   if (l >= r) return;
+//   let i = l - 1,
+//     r = j + 1,
+//     x = q[l + r >> 1];
+//   while (i < j) {
+//     do i++; while (q[i] < x);
+//     do j--; while (q[j] > x);
+//     if (i < j) {
+//       let mid = q[i];
+//       q[i] = q[j];
+//       q[j] = mid;
+//     }
+//   }
+//   quick_sort(q, l, j), quick_sort(q, j + 1, r);
+// }
+
+// const merge_sort = (q, l, r) => {
+//   if (l >= r) return;
+//   let mid = l + r >> 1;
+//   merge_sort(q, l, mid), merge_sort(q, mid + 1, r);
+//   let tmp = [],
+//     k = 0,
+//     i = 0,
+//     j = mid + 1;
+
+//   while (i <= mid && j <= r) {
+//     if (q[i] <= q[j]) {
+//       tmp[k++] = q[i++]
+//     } else {
+//       tmp[k++] = q[j++]
+//     }
+//   }
+//   while (i <= mid) {
+//     tmp[k++] = q[i++]
+//   }
+//   while (j <= r) {
+//     tmp[k++] = q[j++]
+//   }
+//   i = l, j = 0;
+//   while (i <= r) {
+//     q[i++] = tmp[j++]
+//   }
+
+// }
+
+// function myNew() {
+//   let obj = {}
+//   let fn = [].shift.call(arguments);
+//   obj.__proto__ = fn.prototype;
+//   let res = fn.apply(obj, arguments);
+//   return typeof res === 'object' ? res : obj;
+// }
