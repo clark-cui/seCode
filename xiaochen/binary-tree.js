@@ -83,17 +83,17 @@ var binaryTreePaths = function (root) {
  * @param {TreeNode} root
  * @return {boolean}
  */
- var isValidBST = function(root) {
-  const helper=(node,lower,upper)=>{  
-      if(!node){
-          return true;
-      }
-      if(node.val<=lower||node.val>=upper){
-          return false;
-      }
-      return helper(node.left,lower,node.val)&&helper(node.right,node.val,upper);
+var isValidBST = function (root) {
+  const helper = (node, lower, upper) => {
+    if (!node) {
+      return true;
+    }
+    if (node.val <= lower || node.val >= upper) {
+      return false;
+    }
+    return helper(node.left, lower, node.val) && helper(node.right, node.val, upper);
   }
-  return helper(root,-Infinity,Infinity);
+  return helper(root, -Infinity, Infinity);
 }
 
 //236. 二叉树的最近公共祖先(medium) https://leetcode-cn.com/problems/lowest-common-ancestor-of-a-binary-tree/
@@ -104,22 +104,92 @@ var binaryTreePaths = function (root) {
  * @param {TreeNode} q
  * @return {TreeNode}
  */
- var lowestCommonAncestor = function(root, p, q) {
-  const helper =(node,p,q)=>{
-      if(!node||node===p||node===q){
-          return node;
-      }
-     let left= helper(node.left,p,q);
-     let right=helper(node.right,p,q);
+var lowestCommonAncestor = function (root, p, q) {
+  const helper = (node, p, q) => {
+    if (!node || node === p || node === q) {
+      return node;
+    }
+    let left = helper(node.left, p, q);
+    let right = helper(node.right, p, q);
 
-     if(left&&right){
-         return node;
-     }
-     else if(!left){
-         return right;
-     }else{
-         return left;
-     }
+    if (left && right) {
+      return node;
+    } else if (!left) {
+      return right;
+    } else {
+      return left;
+    }
   }
-  return helper(root,p,q);
+  return helper(root, p, q);
+};
+
+//102. 二叉树的层序遍历(medium) https://leetcode-cn.com/problems/binary-tree-level-order-traversal/
+// 用一个队列维护，本质是bfs
+/**
+ * @param {TreeNode} root
+ * @return {number[][]}
+ */
+var levelOrder = function (root) {
+  if (!root) {
+    return []
+  }
+  const queue = [],
+    res = [];
+  queue.push(root);
+  while (queue.length > 0) {
+    const size = queue.length;
+    const part = [];
+    for (let i = 0; i < size; i++) {
+      let item = queue.shift();
+      part.push(item.val);
+      if (item.left) queue.push(item.left);
+      if (item.right) queue.push(item.right);
+    }
+    res.push(part);
+  }
+  return res;
+};
+
+//107. 二叉树的层序遍历 II(medium) https://leetcode-cn.com/problems/binary-tree-level-order-traversal-ii/
+//与上面的差别就是res那里是unshift不是push
+/**
+ * @param {TreeNode} root
+ * @return {number[][]}
+ */
+var levelOrderBottom = function (root) {
+  if (!root) {
+    return [];
+  };
+  const queue = [],
+    res = [];
+  queue.push(root);
+  while (queue.length > 0) {
+    const size = queue.length;
+    const part = [];
+    for (let i = 0; i < size; i++) {
+      let item = queue.shift();
+      part.push(item.val);
+      if (item.left) queue.push(item.left);
+      if (item.right) queue.push(item.right);
+    }
+    res.unshift(part);
+  }
+  return res;
+};
+
+//104. 二叉树的最大深度(easy) https://leetcode-cn.com/problems/maximum-depth-of-binary-tree/
+// 这个题也可以用上面的方法做，也就是层序遍历bfs，然后返回res的length即可
+// 推荐的做法是dfs,找最长的即可
+/**
+ * @param {TreeNode} root
+ * @return {number}
+ */
+var maxDepth = function (root) {
+  if (!root) {
+    return 0;
+  } else {
+    const left = maxDepth(root.left);
+    const right = maxDepth(root.right);
+    return Math.max(left, right) + 1;
+  }
 };
