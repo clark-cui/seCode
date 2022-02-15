@@ -77,3 +77,49 @@ var binaryTreePaths = function (root) {
   return res;
 };
 
+//98. 验证二叉搜索树(medium) https://leetcode-cn.com/problems/validate-binary-search-tree/
+
+/**
+ * @param {TreeNode} root
+ * @return {boolean}
+ */
+ var isValidBST = function(root) {
+  const helper=(node,lower,upper)=>{  
+      if(!node){
+          return true;
+      }
+      if(node.val<=lower||node.val>=upper){
+          return false;
+      }
+      return helper(node.left,lower,node.val)&&helper(node.right,node.val,upper);
+  }
+  return helper(root,-Infinity,Infinity);
+}
+
+//236. 二叉树的最近公共祖先(medium) https://leetcode-cn.com/problems/lowest-common-ancestor-of-a-binary-tree/
+// 思路是肯定是有公共祖先的；递归左右两边，去找p或者q，如果左右都有值，那说明node就是根；如果左边没有值，说明根就在右边；如果右边没有值，根就是左边
+/**
+ * @param {TreeNode} root
+ * @param {TreeNode} p
+ * @param {TreeNode} q
+ * @return {TreeNode}
+ */
+ var lowestCommonAncestor = function(root, p, q) {
+  const helper =(node,p,q)=>{
+      if(!node||node===p||node===q){
+          return node;
+      }
+     let left= helper(node.left,p,q);
+     let right=helper(node.right,p,q);
+
+     if(left&&right){
+         return node;
+     }
+     else if(!left){
+         return right;
+     }else{
+         return left;
+     }
+  }
+  return helper(root,p,q);
+};
