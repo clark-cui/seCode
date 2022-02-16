@@ -179,7 +179,10 @@ var levelOrderBottom = function (root) {
 
 //104. 二叉树的最大深度(easy) https://leetcode-cn.com/problems/maximum-depth-of-binary-tree/
 // 这个题也可以用上面的方法做，也就是层序遍历bfs，然后返回res的length即可
-// 推荐的做法是dfs,找最长的即可
+
+//这里补充下dfs与bfs的写法区别，dfs一般就是写递归，dfs的联想可以看叶子节点，倒着过去想；bfs一般就是用队列写
+
+// 推荐的做法是dfs,先找他的子节点的深度，也就是左节点的深度和右节点的深度，其中的最大值再+1就是当前点的深度；
 /**
  * @param {TreeNode} root
  * @return {number}
@@ -193,3 +196,26 @@ var maxDepth = function (root) {
     return Math.max(left, right) + 1;
   }
 };
+
+//111. 二叉树的最小深度(easy) https://leetcode-cn.com/problems/minimum-depth-of-binary-tree/
+// 这个题也可以bfs做，层序遍历的时候，如果发现该层有叶子节点，那就return 当前的层数
+// 推荐用dfs做，代码简单一点，先找子节点的最小深度，最小深度+1就是当前节点的深度
+/**
+ * @param {TreeNode} root
+ * @return {number}
+ */
+ var minDepth = function(root) {
+  if(!root)return 0;
+  if(!root.left&&!root.right){
+      return 1;
+  }
+  let min =Number.MAX_SAFE_INTEGER;
+  if(root.left){
+      min=Math.min(min,minDepth(root.left));
+  }
+  if(root.right){
+      min=Math.min(min,minDepth(root.right));
+  }
+  return min+1;
+};
+
