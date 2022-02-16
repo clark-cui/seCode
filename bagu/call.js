@@ -8,6 +8,7 @@ Function.prototype.myCall = function () {
   return res;
 }
 
+
 //用法：f.call(obj,arg1)
 function f(a, b) {
   console.log(a + b)

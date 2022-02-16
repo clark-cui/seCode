@@ -15,6 +15,10 @@ function _curry(fn, len, ...args) {
   }
 
 }
+
+
+
+
 let _fn = curry(function (a, b, c, d, e) {
   console.log(a, b, c, d, e)
 });

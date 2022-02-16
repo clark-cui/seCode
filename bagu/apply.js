@@ -17,3 +17,5 @@ let obj = {
   name: '张三'
 }
 f.myApply(obj, [1, 2]) //arguments[1]
+
+

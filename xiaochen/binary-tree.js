@@ -219,3 +219,39 @@ var maxDepth = function (root) {
   return min+1;
 };
 
+//226. 翻转二叉树(easy) https://leetcode-cn.com/problems/invert-binary-tree/submissions/
+/**
+ * @param {TreeNode} root
+ * @return {TreeNode}
+ */
+ var invertTree = function(root) {
+  if(!root){
+      return null
+  }
+  const left =invertTree(root.left);
+  const right=invertTree(root.right);
+  root.left=right;
+  root.right=left;
+  return root;
+};
+
+//100. 相同的树(easy) https://leetcode-cn.com/problems/same-tree/
+
+/**
+ * @param {TreeNode} p
+ * @param {TreeNode} q
+ * @return {boolean}
+ */
+ var isSameTree = function(p, q) {
+  if(!p && !q){
+      return true;
+  }
+  if(!p||!q){
+      return false;
+  }
+  if(p.val!==q.val){
+      return false;
+  }
+  return isSameTree(p.left,q.left) && isSameTree(p.right,q.right);
+
+};
