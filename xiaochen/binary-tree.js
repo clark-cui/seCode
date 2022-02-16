@@ -58,22 +58,21 @@ var postorderTraversal = function (root) {
  * @return {string[]}
  */
 var binaryTreePaths = function (root) {
-  const res = []
-  const binarys = (node, s) => {
-    if (!node) {
-      return;
-    }
+  const res = [];
+
+  const helper = (node, s) => {
+    if (!node) return s;
+
     if (!node.left && !node.right) {
-      s += node.val
+      s += node.val;
       res.push(s);
       return;
     }
     s += node.val + '->';
-    binarys(node.left, s);
-    binarys(node.right, s);
-
+    helper(node.left, s);
+    helper(node.right, s);
   }
-  binarys(root, '');
+  helper(root, '');
   return res;
 };
 
@@ -204,19 +203,19 @@ var maxDepth = function (root) {
  * @param {TreeNode} root
  * @return {number}
  */
- var minDepth = function(root) {
-  if(!root)return 0;
-  if(!root.left&&!root.right){
-      return 1;
+var minDepth = function (root) {
+  if (!root) return 0;
+  if (!root.left && !root.right) {
+    return 1;
   }
-  let min =Number.MAX_SAFE_INTEGER;
-  if(root.left){
-      min=Math.min(min,minDepth(root.left));
+  let min = Number.MAX_SAFE_INTEGER;
+  if (root.left) {
+    min = Math.min(min, minDepth(root.left));
   }
-  if(root.right){
-      min=Math.min(min,minDepth(root.right));
+  if (root.right) {
+    min = Math.min(min, minDepth(root.right));
   }
-  return min+1;
+  return min + 1;
 };
 
 //226. 翻转二叉树(easy) https://leetcode-cn.com/problems/invert-binary-tree/submissions/
@@ -224,14 +223,14 @@ var maxDepth = function (root) {
  * @param {TreeNode} root
  * @return {TreeNode}
  */
- var invertTree = function(root) {
-  if(!root){
-      return null
+var invertTree = function (root) {
+  if (!root) {
+    return null
   }
-  const left =invertTree(root.left);
-  const right=invertTree(root.right);
-  root.left=right;
-  root.right=left;
+  const left = invertTree(root.left);
+  const right = invertTree(root.right);
+  root.left = right;
+  root.right = left;
   return root;
 };
 
@@ -242,16 +241,16 @@ var maxDepth = function (root) {
  * @param {TreeNode} q
  * @return {boolean}
  */
- var isSameTree = function(p, q) {
-  if(!p && !q){
-      return true;
+var isSameTree = function (p, q) {
+  if (!p && !q) {
+    return true;
   }
-  if(!p||!q){
-      return false;
+  if (!p || !q) {
+    return false;
   }
-  if(p.val!==q.val){
-      return false;
+  if (p.val !== q.val) {
+    return false;
   }
-  return isSameTree(p.left,q.left) && isSameTree(p.right,q.right);
+  return isSameTree(p.left, q.left) && isSameTree(p.right, q.right);
 
 };
