@@ -33,6 +33,14 @@ function myNew() {
   return typeof res === 'object' ? res : obj
 }
 
+function myNew(){
+  let obj ={}
+  let fn =[].shift().call(arguments);
+  obj.__proto__=fn.prototype;
+  let res =fn.apply(obj,arguments);
+  return typeof res === 'object'?res:obj;
+}
+
 
 // const quick_sort = (q, l, r) => {
 //   if (l >= r) return;
