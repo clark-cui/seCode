@@ -46,3 +46,12 @@ function deepc(newObj,oldObj){
     }
   }
 }
+
+function deepc(newObj,oldObj){
+  for(let key in oldObj){
+    if(oldObj[key] instanceof Array){
+      newObj[key]=[];
+      deepClone(newObj[key],oldObj[key])
+    }else if ()
+  }
+}

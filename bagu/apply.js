@@ -19,3 +19,9 @@ let obj = {
 f.myApply(obj, [1, 2]) //arguments[1]
 
 
+const context=[].shift.call(arguments);
+let obj =context||window;
+obj.fn=this;
+let res =obj.fn(...arguments[0]);
+delete obj.fn;
+return res;
