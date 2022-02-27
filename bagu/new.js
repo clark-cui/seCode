@@ -24,6 +24,15 @@ function myNew() {
 let p2 = myNew(Person, '李四', '20');
 p2.sayHI();
 
+funtion tnew(){
+  let obj={};
+  let fn =[].shift().call(arguments);
+  obj.__proto__=fn.prototype;
+  let res =fn.apply(obj,arguments);
+  return typeof res ==='object'?res:obj;
+}
+
+
 
 function myNew() {
   let obj = {};
