@@ -29,3 +29,5 @@ while(target){
   target=target.__proto__;
 }
 return false
+
+

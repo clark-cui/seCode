@@ -33,3 +33,6 @@ const quick_sort = (arr, l, r, k) => {
   if (Sl >= k) return quick_sort(arr, l, j, k)
   return quick_sort(arr, j + 1, r, k - Sl);
 }
+
+
+const quick_sort=(q,l,r)

@@ -25,3 +25,4 @@ obj.fn=this;
 let res =obj.fn(...arguments[0]);
 delete obj.fn;
 return res;
+
