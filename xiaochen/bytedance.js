@@ -47,3 +47,4 @@ function getPath(p, target) {
   return result
 }
 console.log(getPath(data, 6));
+

@@ -124,41 +124,42 @@ var reverseBetween = function (head, left, right) {
 };
 
 //25. K 个一组翻转链表(hard) https://leetcode-cn.com/problems/reverse-nodes-in-k-group/
-// 还有点不太会，多练练
-const myReverse = (head, tail) => {
-  let prev = tail.next;
-  let p = head;
-  while (prev !== tail) {
-    const nex = p.next;
-    p.next = prev;
-    prev = p;
-    p = nex;
+// labuladong上面有解析
+/**
+ * Definition for singly-linked list.
+ * function ListNode(val, next) {
+ *     this.val = (val===undefined ? 0 : val)
+ *     this.next = (next===undefined ? null : next)
+ * }
+ */
+/**
+ * @param {ListNode} head
+ * @param {number} k
+ * @return {ListNode}
+ */
+const reverse = (a, b) => {
+  let prev = null,
+    cur = a,
+    next = null;
+  while (cur !== b) {
+    next = cur.next;
+    cur.next = prev;
+    prev = cur;
+    cur = next;
   }
-  return [tail, head];
+  return prev;
 }
 var reverseKGroup = function (head, k) {
-  const hair = new ListNode(0);
-  hair.next = head;
-  let pre = hair;
-
-  while (head) {
-    let tail = pre;
-    // 查看剩余部分长度是否大于等于 k
-    for (let i = 0; i < k; ++i) {
-      tail = tail.next;
-      if (!tail) {
-        return hair.next;
-      }
-    }
-    const nex = tail.next;
-    [head, tail] = myReverse(head, tail);
-    // 把子链表重新接回原链表
-    pre.next = head;
-    tail.next = nex;
-    pre = tail;
-    head = tail.next;
+  if (!head) return null;
+  let a = head,
+    b = head;
+  for (let i = 0; i < k; i++) {
+    if (!b) return head;
+    b = b.next;
   }
-  return hair.next;
+  let newHead = reverse(a, b);
+  a.next = reverseKGroup(b, k);
+  return newHead;
 };
 
 
